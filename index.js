@@ -43,9 +43,19 @@ app.get('/', (req, res) => {
     captureShot()
         .then((response) => {
             res.send(`<img src="${response}"/>`)
-        })
+        });
 });
 
 app.listen(3000, () => {
     console.log("Listening at port 3000....");
 });
+
+let minutes = 1;
+const the_interval = minutes * 60 * 1000;
+setInterval(function () {
+    console.log("I am doing my 1 minute check");
+    captureShot()
+        .then((response) => {
+            console.log(`capture done ${response}`);
+        });
+}, the_interval);
